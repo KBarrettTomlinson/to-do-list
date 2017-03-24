@@ -1,0 +1,27 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "Basic TO DO list application",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "jquery": "^3.2.1",
+    "pg": "^6.1.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KBarrettTomlinson/to-do-list.git"
+  },
+  "author": "Keith Tomlinson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KBarrettTomlinson/to-do-list/issues"
+  },
+  "homepage": "https://github.com/KBarrettTomlinson/to-do-list#readme"
+}
