@@ -96,8 +96,22 @@ function deleteTask(thisButton){
 function displayData(dataArray){
   console.log("inside displayData");
 
+  //empties out the display
   $('#outputDiv').empty();
+
+  //creates header
+  $('#outputDiv').append('<div class = "dataRowDiv"></div>');
+  var $el = $('#outputDiv').children().last();
+  $el.append('<th class="table-item">TASK</th>');
+  $el.append('<th class="table-item">PRIORITY</th>');
+  $el.append('<th class="table-item">NEXT STEP</th>');
+  $el.append('<th class="table-item">COMPLETED</th>');
+  $el.append('<th class="table-item">DELETE TASK</th>');
+
+
+
   for (var i = 0; i < dataArray.length; i++){
+    $('#outputDiv').append('<div class = "dataRowDiv"></div>');
 
     //grabs the object from the array
     var currentObject = dataArray[i];
@@ -120,7 +134,7 @@ function displayData(dataArray){
 
     //appends dataRowDiv to the outputDiv
     $('#outputDiv').append('<div class = "dataRowDiv"></div>');
-    var $el = $('#outputDiv').children().last();
+    $el = $('#outputDiv').children().last();
     $el.data('id',id);
 
     //appends object to the rows as a table
