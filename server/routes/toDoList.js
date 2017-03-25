@@ -43,6 +43,33 @@ var pool = new pg.Pool(config);
   });//ends SELECT basic display
 
 //posts
+  //SELECT basic display
+  router.get('/add',function(req, res){
+    //pull apart the object
+
+
+    //pool setup
+    pool.connect(function(error,db,done){
+      if(error){
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      }//ends if
+      else{
+        db.query( 'SELECT * FROM "todo_list"'+
+                  'ORDER BY "completed", "priority" DESC;',
+                  function(queryError,result){
+                    done();
+                    if(queryError){
+                      console.log("Error making query.");
+                      res.sendStatus(500);
+                    }//ends if
+                    else{
+                      res.send(201);
+                    }//ends else
+                  });//ends db.query
+      }//ends else
+    });//ends pool.connect
+  });//ends SELECT basic display
 
 //puts
 

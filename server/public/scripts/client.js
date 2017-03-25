@@ -8,18 +8,47 @@ $(document).ready(function(){
   eventListeners();
 });//ends document ready
 
+//function list
+  // addTask
+  // buildObject
+  // clearForm
+  // completeTask
+  // deleteTask
+  // displayData
+  // eventListeners
+  // getDisplay
+
+
 //functions function are arranged alphabetically
-function addTask(){
+function addTask(object){
   console.log("inside addTask");
-  //add task makes an ajax POST to the database via todolist/add
-  //response is returned and then getDisplay(); is called
-  getDisplay();
+  $.ajax({
+    type: 'POST',
+    url: '/todolist/add',
+    data: object,
+    success: function(response){
+      console.log("We've taken something to the other side:",response);
+      getDisplay();
+    }//ends success
+  });//end ajax POST
 }//ends addTask
 
 function buildObject(){
   console.log("inside buildObject");
-  //builds an object to send it across the void to the server
+  var object = {};
+  object.task = $('#task').val();
+  object.priority = $('#priority').val();
+  object.next_step = $('#next').val();
+  console.log("we made you an object:",object);
+  return object;
 }//ends buildObject
+
+function clearForm(){
+  console.log("inside clear form");
+  $('#task').val('');
+  $('#priority').val('');
+  $('#next').val('');
+}//clears input form
 
 function completeTask(){
   console.log("inside completeTask");
@@ -88,13 +117,20 @@ function displayData(dataArray){
 
 function eventListeners(){
   console.log("inside eventListeners");
-  //on submit event listener calls addTask() and passes var $this to it
-  addTask();
-  //on click complete calls completeTask() and passes var $this to it
+  //on submit
+  $('#addTaskForm').on('submit',function(event){
+      event.preventDefault();
+      console.log("inside on sumbmit");
+      var object = buildObject();
+      addTask(object);
+      clearForm();
+  });//ends on submit
+
+  //on click complete
   $('#outputDiv').on('click','.completeButton',function(){
       console.log("inside complete button on click");
       completeTask();
-  });
+  });//ends on click complete
 
   //on click delete calls deleteTask() and passes var $this to it
   deleteTask();

@@ -11,7 +11,7 @@ h1{
 }
 
 #addTaskDiv{
-
+  text-align: center;
 }
 
 #addTaskForm{
@@ -29,7 +29,7 @@ h1{
 
 #next{
 
-  
+
 }
 
 #outputDiv{
