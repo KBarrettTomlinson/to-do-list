@@ -43,6 +43,36 @@ var pool = new pg.Pool(config);
   });//ends SELECT basic display
 
 //posts
+  //INSERT INTO new task
+  router.post('/add',function(req, res){
+    //pull apart the object
+    var task = req.body.task;
+    var priority = parseInt(req.body.priority);
+    var next  = req.body.next_step;
+
+    //pool setup
+    pool.connect(function(error,db,done){
+      if(error){
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      }//ends if
+      else{
+        db.query( 'INSERT INTO "todo_list" ("task","priority","next_step")'+
+                  'VALUES ($1,$2,$3);',
+                  [task,priority,next],
+                  function(queryError,result){
+                    done();
+                    if(queryError){
+                      console.log("Error making query.");
+                      res.sendStatus(500);
+                    }//ends if
+                    else{
+                      res.sendStatus(201);
+                    }//ends else
+                  });//ends db.query
+      }//ends else
+    });//ends pool.connect
+  });//ends INSERT INTO new task
 
 //puts
 
