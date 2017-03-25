@@ -13,6 +13,10 @@ h1{
 
 /*classes and ids -
 arranged in order of appearance in DOM with highlight-div at bottom */
+#headerDiv{
+  background-image: url(images/linedPaper.jpg);
+}
+
 
 #addTaskDiv{
   text-align: center;
