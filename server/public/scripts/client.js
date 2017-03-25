@@ -48,6 +48,7 @@ function clearForm(){
   $('#task').val('');
   $('#priority').val('');
   $('#next').val('');
+  $('#task').focus();
 }//clears input form
 
 function completeTask(){

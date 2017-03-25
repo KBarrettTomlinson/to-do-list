@@ -43,10 +43,12 @@ var pool = new pg.Pool(config);
   });//ends SELECT basic display
 
 //posts
-  //SELECT basic display
-  router.get('/add',function(req, res){
+  //INSERT INTO new task
+  router.post('/add',function(req, res){
     //pull apart the object
-
+    var task = req.body.task;
+    var priority = parseInt(req.body.priority);
+    var next  = req.body.next_step;
 
     //pool setup
     pool.connect(function(error,db,done){
@@ -55,8 +57,9 @@ var pool = new pg.Pool(config);
         res.sendStatus(500);
       }//ends if
       else{
-        db.query( 'SELECT * FROM "todo_list"'+
-                  'ORDER BY "completed", "priority" DESC;',
+        db.query( 'INSERT INTO "todo_list" ("task","priority","next_step")'+
+                  'VALUES ($1,$2,$3);',
+                  [task,priority,next],
                   function(queryError,result){
                     done();
                     if(queryError){
@@ -64,12 +67,12 @@ var pool = new pg.Pool(config);
                       res.sendStatus(500);
                     }//ends if
                     else{
-                      res.send(201);
+                      res.sendStatus(201);
                     }//ends else
                   });//ends db.query
       }//ends else
     });//ends pool.connect
-  });//ends SELECT basic display
+  });//ends INSERT INTO new task
 
 //puts
 
