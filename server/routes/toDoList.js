@@ -76,11 +76,12 @@ var pool = new pg.Pool(config);
 
 //puts
   //UPDATE completed
-  router.post('/completed',function(req, res){
+  router.put('/completed',function(req, res){
     //pull apart the object
-    var task = req.body.task;
-    var priority = parseInt(req.body.priority);
-    var next  = req.body.next_step;
+    var id = req.body.id;
+    var completed  = req.body.completed;
+    console.log("id",id);
+    console.log("completed",completed);
 
     //pool setup
     pool.connect(function(error,db,done){
@@ -89,9 +90,10 @@ var pool = new pg.Pool(config);
         res.sendStatus(500);
       }//ends if
       else{
-        db.query( 'INSERT INTO "todo_list" ("task","priority","next_step")'+
-                  'VALUES ($1,$2,$3);',
-                  [task,priority,next],
+        db.query( 'UPDATE "todo_list"'+
+                  'SET "completed" = $1'+
+                  'WHERE "id" =$2;;',
+                  [completed,id],
                   function(queryError,result){
                     done();
                     if(queryError){
