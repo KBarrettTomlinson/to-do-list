@@ -9,14 +9,14 @@ $(document).ready(function(){
 });//ends document ready
 
 //function list
-  // addTask
-  // buildObject
-  // clearForm
-  // completeTask
-  // deleteTask
-  // displayData
-  // eventListeners
-  // getDisplay
+  // addTask - ajax call for adding a new task
+  // buildObject - builds an object from input fields
+  // clearForm - clears out the input form, puts focus on first input
+  // completeTask -  ajax call to change completed status
+  // deleteTask - ajax call to delete task
+  // displayData - appends data to DOM
+  // eventListeners - sets click behavior
+  // getDisplay - ajax call to get current table
 
 
 //functions function are arranged alphabetically
@@ -134,7 +134,7 @@ function displayData(dataArray){
     if (completed === true){
       $el.addClass('highlight-div');
     }//ends if
-    $el1.append('<button class="completeButton">'+completeButtonText+'</button>');
+    $el1.append('<button class="complete-button">'+completeButtonText+'</button>');
     var $el2 = $el1.children().last();
     $el2.data('id',id);
     $el2.data('completed',completed);
@@ -142,7 +142,7 @@ function displayData(dataArray){
     //appends button to the row and adds data tags
     $el.append('<td class="table-button"></td>');
     var $el3 = $el.children().last();
-    $el3.append('<button class="deleteButton">Delete</button>');
+    $el3.append('<button class="delete-button">Delete</button>');
     var $el4 = $el3.children().last();
     $el4.data('id',id);
   }//ends for loop that appends to DOM
@@ -161,14 +161,14 @@ function eventListeners(){
   });//ends on submit
 
   //on click complete
-  $('#outputDiv').on('click','.completeButton',function(){
+  $('#outputDiv').on('click','.complete-button',function(){
       console.log("inside complete button on click");
       var $this = $(this);
       completeTask($this);
   });//ends on click complete
 
   //on click delete
-  $('#outputDiv').on('click','.deleteButton',function(){
+  $('#outputDiv').on('click','.delete-button',function(){
       console.log("inside delete button on click");
       var $this = $(this);
       deleteTask($this);
