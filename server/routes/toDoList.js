@@ -26,7 +26,7 @@ var pool = new pg.Pool(config);
         res.sendStatus(500);
       }//ends if
       else{
-        db.query( 'SELECT "task","priority","next_step" FROM "todo_list"'+
+        db.query( 'SELECT * FROM "todo_list"'+
                   'ORDER BY "completed", "priority" DESC;',
                   function(queryError,result){
                     done();

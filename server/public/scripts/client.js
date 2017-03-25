@@ -37,10 +37,53 @@ function deleteTask(){
 
 function displayData(dataArray){
   console.log("inside displayData");
-  //this function appends the dataArray of objects to the DOM
-  //while apending to the DOM it crates buttons for Completed and Delete
-  //When those buttons get created data is attached to the buttons for future
-  //reference
+
+  $('#outputDiv').empty();
+  for (var i = 0; i < dataArray.length; i++){
+
+    //grabs the object from the array
+    var currentObject = dataArray[i];
+
+    //picks apart the object
+    var id= currentObject.id;
+    var task = currentObject.task;
+    var priority = parseInt(currentObject.priority);
+    var next = currentObject.next_step;
+    var completed = currentObject.completed;
+
+    //completed button text
+    var completeButtonText;
+    if (completed ===true){
+      completeButtonText = "Complete";
+    }//end if
+    else{
+      completeButtonText = "TO DO";
+    }//end else
+
+    //appends dataRowDiv to the outputDiv
+    $('#outputDiv').append('<div class = "dataRowDiv"></div>');
+    var $el = $('#outputDiv').children().last();
+
+    //appends object to the rows as a table
+    $el.append('<td class="table-item">'+task+'</td>');
+    $el.append('<td class="table-item">'+priority+'</td>');
+    $el.append('<td class="table-item">'+next+'</td>');
+
+    //appends button to the row and adds data tags
+    $el.append('<td class="table-button"></td>');
+    var $el1 = $el.children().last();
+    $el1.append('<button class="completeButton">'+completeButtonText+'</button>');
+    var $el2 = $el1.children().last();
+    $el2.data('id',id);
+    $el2.data('completed',completed);
+
+    //appends button to the row and adds data tags
+    $el.append('<td class="table-button"></td>');
+    var $el3 = $el.children().last();
+    $el3.append('<button class="deleteButton">Delete</button>');
+    var $el4 = $el3.children().last();
+    $el4.data('id',id);
+  }//ends for loop that appends to DOM
 }//ends displayData
 
 function eventListeners(){
@@ -48,16 +91,23 @@ function eventListeners(){
   //on submit event listener calls addTask() and passes var $this to it
   addTask();
   //on click complete calls completeTask() and passes var $this to it
-  completeTask();
+  $('#outputDiv').on('click','.completeButton',function(){
+      console.log("inside complete button on click");
+      completeTask();
+  });
+
   //on click delete calls deleteTask() and passes var $this to it
   deleteTask();
 }//ends eventListeners
 
 function getDisplay(){
   console.log("inside getDisplay");
-  //this function makes and ajax call to todolist/ gets selects datbase to display
-  //brings back an array of objects
-  //success calls displayData(response);
-  var response = "temporary response";
-  displayData(response);
+  $.ajax({
+    type: 'GET',
+    url: '/todolist',
+    success: function(response){
+      console.log("We send someone to the other side, and they have returned with this:", response);
+      displayData(response);
+    }//ends success
+  });//ends ajax get
 }//ends getDisplay
