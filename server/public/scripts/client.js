@@ -55,7 +55,15 @@ function completeTask(){
   console.log("inside completeTask");
   //completeTask makes an ajax PUT to the database
   //response is returned and teh getDisplay() is called
-  getDisplay();
+  $.ajax({
+    type: 'PUT',
+    url: '/todolist/completed',
+    data: dataObject,
+    success: function(response){
+      console.log("We sent someone over with the change:", response);
+      getDisplay();
+    }//ends success
+  });//ends ajax PUT  
 }//ends completeTask
 
 function deleteTask(){
