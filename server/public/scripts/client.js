@@ -46,7 +46,8 @@ function buildObject(){
 function clearForm(){
   console.log("inside clear form");
   $('#task').val('');
-  $('#priority').val('');
+  $("select").each(function() { this.selectedIndex = 0 });
+  // $('#priority').val('');
   $('#next').val('');
   $('#task').focus();
 }//clears input form
