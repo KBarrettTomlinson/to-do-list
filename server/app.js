@@ -1,7 +1,7 @@
 //requires
 var express = require('express');
 var bodyParser = require('body-parser');
-var pg = require('pg');
+var toDoList = require('./routes.toDoList.js');
 
 //globals
 var app = express();
@@ -10,6 +10,7 @@ var port = 5000;
 //uses
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use('/todolist',toDoList);
 
 //listening
 app.listen(port, function(){
