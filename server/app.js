@@ -1,7 +1,7 @@
 //requires
 var express = require('express');
 var bodyParser = require('body-parser');
-var toDoList = require('./routes.toDoList.js');
+var toDoList = require('./routes/toDoList.js');
 
 //globals
 var app = express();

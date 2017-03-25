@@ -5,6 +5,37 @@ html, body{
 }
 
 h1{
-  font-size: 75px;
+  text-align: center;
+  font-size: 45px;
 
+}
+
+#addTaskDiv{
+
+  
+}
+
+#outputDiv{
+text-align: center;
+
+
+}
+
+#dataRowDiv{
+  text-align: center;
+  margin: 0 auto;
+
+}
+
+.table-item{
+  width: 250px;
+  text-align: center;
+  margin: 0 auto;
+
+}
+
+.table-button{
+  width: 250px;
+  text-align: center;
+  margin: 0 auto;
 }

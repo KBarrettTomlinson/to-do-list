@@ -41,6 +41,25 @@ function displayData(dataArray){
   //while apending to the DOM it crates buttons for Completed and Delete
   //When those buttons get created data is attached to the buttons for future
   //reference
+  $('#outputDiv').empty();
+  for (var i = 0; i < dataArray.length; i++){
+    var currentObject = dataArray[i];
+    //picks apart the object
+    var id= currentObject.id;
+    var task = currentObject.task;
+    var priority = parseInt(currentObject.priority);
+    var next = currentObject.next_step;
+    var completed = currentObject.completed;
+    //appends dataRowDiv to the outputDiv
+    $('#outputDiv').append('<div class = "dataRowDiv"></div>');
+    var $el = $('#outputDiv').children().last();
+    //appends object to the rows
+    $el.append('<td class="table-item">'+task+'</td>');
+    $el.append('<td class="table-item">'+priority+'</td>');
+    $el.append('<td class="table-item">'+next+'</td>');
+    $el.append('<td class="table-button"><button>'+completed+'</button></td>');
+    $el.append('<td class="table-button"><button>Delete</button></td>');
+  }//ends for loop that appends to DOM
 }//ends displayData
 
 function eventListeners(){
@@ -55,9 +74,12 @@ function eventListeners(){
 
 function getDisplay(){
   console.log("inside getDisplay");
-  //this function makes and ajax call to todolist/ gets selects datbase to display
-  //brings back an array of objects
-  //success calls displayData(response);
-  var response = "temporary response";
-  displayData(response);
+  $.ajax({
+    type: 'GET',
+    url: '/todolist',
+    success: function(response){
+      console.log("We send someone to the other side, and they have returned with this:", response);
+      displayData(response);
+    }//ends success
+  });//ends ajax get
 }//ends getDisplay
