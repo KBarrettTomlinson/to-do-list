@@ -43,6 +43,7 @@ arranged in order of appearance in DOM with highlight-div at bottom */
 
 #outputDiv{
 text-align: center;
+border-top: thick double black;
 
 
 }
