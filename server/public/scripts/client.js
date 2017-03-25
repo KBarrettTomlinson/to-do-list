@@ -111,6 +111,7 @@ function displayData(dataArray){
     //appends dataRowDiv to the outputDiv
     $('#outputDiv').append('<div class = "dataRowDiv"></div>');
     var $el = $('#outputDiv').children().last();
+    $el.data('id',id);
 
     //appends object to the rows as a table
     $el.append('<td class="table-item">'+task+'</td>');
@@ -120,6 +121,11 @@ function displayData(dataArray){
     //appends button to the row and adds data tags
     $el.append('<td class="table-button"></td>');
     var $el1 = $el.children().last();
+    if (completed === true){
+      console.log("$el",$el);
+      $el.addClass('highlight-div');
+      console.log("inside highlight div");
+    }//ends if
     $el1.append('<button class="completeButton">'+completeButtonText+'</button>');
     var $el2 = $el1.children().last();
     $el2.data('id',id);
