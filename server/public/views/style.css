@@ -1,3 +1,4 @@
+/*elements*/
 html, body{
   margin: 0;
   padding:  0;
@@ -9,6 +10,9 @@ h1{
   font-size: 45px;
 
 }
+
+/*classes and ids -
+arranged in order of appearance in DOM with highlight-div at bottom */
 
 #addTaskDiv{
   text-align: center;
@@ -23,12 +27,6 @@ h1{
   text-align: center;
 }
 
-.table-header{
-  width: 150px;
-  text-align: center;
-  margin: 0 auto;
-
-}
 
 #task{
 
@@ -62,11 +60,6 @@ text-align: center;
 
 }
 
-.table-button{
-  width: 150px;
-  text-align: center;
-  margin: 0 auto;
-}
 
 .complete-button{
 

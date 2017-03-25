@@ -46,8 +46,8 @@ function buildObject(){
 function clearForm(){
   console.log("inside clear form");
   $('#task').val('');
-  $("select").each(function() { this.selectedIndex = 0 });
-  // $('#priority').val('');
+  $("select").each(function(){
+    this.selectedIndex = 0;});
   $('#next').val('');
   $('#task').focus();
 }//clears input form
@@ -144,7 +144,7 @@ function displayData(dataArray){
     $el.append('<td class="table-item">'+next+'</td>');
 
     //appends button to the row and adds data tags
-    $el.append('<td class="table-button"></td>');
+    $el.append('<td class="table-item"></td>');
     var $el1 = $el.children().last();
     if (completed === true){
       $el.addClass('highlight-div');
@@ -155,7 +155,7 @@ function displayData(dataArray){
     $el2.data('completed',completed);
 
     //appends button to the row and adds data tags
-    $el.append('<td class="table-button"></td>');
+    $el.append('<td class="table-item"></td>');
     var $el3 = $el.children().last();
     $el3.append('<button class="delete-button">Delete</button>');
     var $el4 = $el3.children().last();
