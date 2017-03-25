@@ -51,10 +51,20 @@ function clearForm(){
   $('#task').focus();
 }//clears input form
 
-function completeTask(){
+function completeTask(thisButton){
   console.log("inside completeTask");
-  //completeTask makes an ajax PUT to the database
-  //response is returned and teh getDisplay() is called
+
+  // collecting data from button
+  var id = thisButton.data('id');
+  var completed = thisButton.data('completed');
+  completed = !completed;
+
+  // building Object from data
+  var dataObject = {};
+  dataObject.id = id;
+  dataObject.completed = completed;
+
+  //ajax PUT
   $.ajax({
     type: 'PUT',
     url: '/todolist/completed',
@@ -63,7 +73,7 @@ function completeTask(){
       console.log("We sent someone over with the change:", response);
       getDisplay();
     }//ends success
-  });//ends ajax PUT  
+  });//ends ajax PUT
 }//ends completeTask
 
 function deleteTask(){
@@ -138,7 +148,8 @@ function eventListeners(){
   //on click complete
   $('#outputDiv').on('click','.completeButton',function(){
       console.log("inside complete button on click");
-      completeTask();
+      var $this = $(this);
+      completeTask($this);
   });//ends on click complete
 
   //on click delete calls deleteTask() and passes var $this to it
