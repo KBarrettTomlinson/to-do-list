@@ -92,7 +92,7 @@ var pool = new pg.Pool(config);
       else{
         db.query( 'UPDATE "todo_list"'+
                   'SET "completed" = $1'+
-                  'WHERE "id" =$2;;',
+                  'WHERE "id" =$2;',
                   [completed,id],
                   function(queryError,result){
                     done();
@@ -109,6 +109,35 @@ var pool = new pg.Pool(config);
   });//ends UPDATE COMPLETED
 
 //deletes
+  //DELETS row id
+  router.delete('/delete/:valOne',function(req, res){
+    //retrieve id from valOne
+    var taskId = req.params.valOne;
+    console.log(taskId,'taskId');
+
+    //pool setup
+    pool.connect(function(error,db,done){
+      if(error){
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      }//ends if
+      else{
+        db.query( 'DELETE FROM "todo_list"'+
+                  'WHERE "id"=$1;',
+                  [taskId],
+                  function(queryError,result){
+                    done();
+                    if(queryError){
+                      console.log("Error making query.");
+                      res.sendStatus(500);
+                    }//ends if
+                    else{
+                      res.sendStatus(201);
+                    }//ends else
+                  });//ends db.query
+      }//ends else
+    });//ends pool.connect
+  });//ends DELETE row id
 
 //exports
 module.exports = router;

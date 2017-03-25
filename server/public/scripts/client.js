@@ -76,11 +76,21 @@ function completeTask(thisButton){
   });//ends ajax PUT
 }//ends completeTask
 
-function deleteTask(){
+function deleteTask(thisButton){
   console.log("inside deleteTask");
-  //deleteTask makes an ajax DELETE to the database
-  //response is returned and then getDisplay() is called
-  getDisplay();
+
+  //collecting data from button
+  var id = thisButton.data('id');
+  console.log("id inside deleteTask",id);
+  //ajax deleteTask
+  $.ajax({
+    type: 'DELETE',
+    url: '/todolist/delete/'+id,
+    success: function(response){
+      console.log("We sent someone over to break the news and delete a task",response);
+      getDisplay();
+    }//ends success
+  });//ends ajax DELETE
 }//ends deleteTask
 
 function displayData(dataArray){
@@ -122,9 +132,7 @@ function displayData(dataArray){
     $el.append('<td class="table-button"></td>');
     var $el1 = $el.children().last();
     if (completed === true){
-      console.log("$el",$el);
       $el.addClass('highlight-div');
-      console.log("inside highlight div");
     }//ends if
     $el1.append('<button class="completeButton">'+completeButtonText+'</button>');
     var $el2 = $el1.children().last();
@@ -142,6 +150,7 @@ function displayData(dataArray){
 
 function eventListeners(){
   console.log("inside eventListeners");
+
   //on submit
   $('#addTaskForm').on('submit',function(event){
       event.preventDefault();
@@ -158,8 +167,12 @@ function eventListeners(){
       completeTask($this);
   });//ends on click complete
 
-  //on click delete calls deleteTask() and passes var $this to it
-  deleteTask();
+  //on click delete
+  $('#outputDiv').on('click','.deleteButton',function(){
+      console.log("inside delete button on click");
+      var $this = $(this);
+      deleteTask($this);
+  });//ends on click delete
 }//ends eventListeners
 
 function getDisplay(){
