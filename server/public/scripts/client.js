@@ -51,11 +51,29 @@ function clearForm(){
   $('#task').focus();
 }//clears input form
 
-function completeTask(){
+function completeTask(thisButton){
   console.log("inside completeTask");
-  //completeTask makes an ajax PUT to the database
-  //response is returned and teh getDisplay() is called
-  getDisplay();
+
+  // collecting data from button
+  var id = thisButton.data('id');
+  var completed = thisButton.data('completed');
+  completed = !completed;
+
+  // building Object from data
+  var dataObject = {};
+  dataObject.id = id;
+  dataObject.completed = completed;
+
+  //ajax PUT
+  $.ajax({
+    type: 'PUT',
+    url: '/todolist/completed',
+    data: dataObject,
+    success: function(response){
+      console.log("We sent someone over with the change:", response);
+      getDisplay();
+    }//ends success
+  });//ends ajax PUT
 }//ends completeTask
 
 function deleteTask(){
@@ -93,6 +111,7 @@ function displayData(dataArray){
     //appends dataRowDiv to the outputDiv
     $('#outputDiv').append('<div class = "dataRowDiv"></div>');
     var $el = $('#outputDiv').children().last();
+    $el.data('id',id);
 
     //appends object to the rows as a table
     $el.append('<td class="table-item">'+task+'</td>');
@@ -102,6 +121,11 @@ function displayData(dataArray){
     //appends button to the row and adds data tags
     $el.append('<td class="table-button"></td>');
     var $el1 = $el.children().last();
+    if (completed === true){
+      console.log("$el",$el);
+      $el.addClass('highlight-div');
+      console.log("inside highlight div");
+    }//ends if
     $el1.append('<button class="completeButton">'+completeButtonText+'</button>');
     var $el2 = $el1.children().last();
     $el2.data('id',id);
@@ -130,7 +154,8 @@ function eventListeners(){
   //on click complete
   $('#outputDiv').on('click','.completeButton',function(){
       console.log("inside complete button on click");
-      completeTask();
+      var $this = $(this);
+      completeTask($this);
   });//ends on click complete
 
   //on click delete calls deleteTask() and passes var $this to it

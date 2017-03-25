@@ -45,7 +45,7 @@ text-align: center;
 }
 
 .table-item{
-  width: 250px;
+  width: 150px;
   text-align: center;
   margin: 0 auto;
 
@@ -65,4 +65,8 @@ text-align: center;
 .deleteButton{
 
 
+}
+
+.highlight-div{
+  background-color: khaki;
 }
