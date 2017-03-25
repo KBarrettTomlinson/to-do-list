@@ -185,6 +185,7 @@ function eventListeners(){
   //on click delete
   $('#outputDiv').on('click','.delete-button',function(){
       console.log("inside delete button on click");
+      confirm("Are you sure you want to delete this task?");
       var $this = $(this);
       deleteTask($this);
   });//ends on click delete
