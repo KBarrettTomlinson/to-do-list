@@ -12,7 +12,7 @@ h1{
 
 #addTaskDiv{
 
-  
+
 }
 
 #outputDiv{
@@ -38,4 +38,14 @@ text-align: center;
   width: 250px;
   text-align: center;
   margin: 0 auto;
+}
+
+.completeButton{
+
+
+}
+
+.deleteButton{
+
+
 }

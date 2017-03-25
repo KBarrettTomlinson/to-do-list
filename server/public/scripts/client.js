@@ -57,8 +57,12 @@ function displayData(dataArray){
     $el.append('<td class="table-item">'+task+'</td>');
     $el.append('<td class="table-item">'+priority+'</td>');
     $el.append('<td class="table-item">'+next+'</td>');
-    $el.append('<td class="table-button"><button>'+completed+'</button></td>');
-    $el.append('<td class="table-button"><button>Delete</button></td>');
+
+    //break this out into two different appends, that way it will be easier to attach data to the buttons
+    $el.append('<td class="table-button"><button class="completeButton">'+completed+'</button></td>');
+    $el.append('<td class="table-button"><button class="deleteButton">Delete</button></td>');
+    //adds data to buttons
+
   }//ends for loop that appends to DOM
 }//ends displayData
 
