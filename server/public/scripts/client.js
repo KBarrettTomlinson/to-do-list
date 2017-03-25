@@ -81,11 +81,11 @@ function deleteTask(thisButton){
 
   //collecting data from button
   var id = thisButton.data('id');
-
+  console.log("id inside deleteTask",id);
   //ajax deleteTask
   $.ajax({
     type: 'DELETE',
-    url: '/todolist/delete/:id',
+    url: '/todolist/delete/'+id,
     success: function(response){
       console.log("We sent someone over to break the news and delete a task",response);
       getDisplay();
