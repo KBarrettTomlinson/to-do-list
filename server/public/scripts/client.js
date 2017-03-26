@@ -24,7 +24,7 @@ function addTask(object){
   console.log("inside addTask");
   $.ajax({
     type: 'POST',
-    url: '/todolist/add',
+    url : '/todolist/add',
     data: object,
     success: function(response){
       console.log("We've taken something to the other side:",response);
@@ -103,11 +103,14 @@ function displayData(dataArray){
   //creates header
   $('#outputDiv').append('<div class = "dataRowDiv"></div>');
   var $el = $('#outputDiv').children().last();
-  $el.append('<th class="table-item">TASK</th>');
-  $el.append('<th class="table-item">PRIORITY</th>');
-  $el.append('<th class="table-item">NEXT STEP</th>');
-  $el.append('<th class="table-item">COMPLETED</th>');
-  $el.append('<th class="table-item">DELETE TASK</th>');
+  $el.append('<table></table>');
+  var $el1 = $el.children().last();
+  $el1.append('<th class="table-item">TASK</th>');
+  $el1.append('<th class="table-item">PRIORITY</th>');
+  $el1.append('<th class="table-item">NEXT STEP</th>');
+  $el1.append('<th class="table-item">COMPLETED</th>');
+  $el1.append('<th class="table-item">DELETE TASK</th>');
+
 
 
 
@@ -126,7 +129,7 @@ function displayData(dataArray){
 
     //completed button text
     var completeButtonText;
-    if (completed ===true){
+    if (completed === true){
       completeButtonText = "Complete";
     }//end if
     else{
@@ -135,8 +138,12 @@ function displayData(dataArray){
 
     //appends dataRowDiv to the outputDiv
     $('#outputDiv').append('<div class = "dataRowDiv"></div>');
-    $el = $('#outputDiv').children().last();
-    $el.data('id',id);
+    $eld = $('#outputDiv').children().last();
+    $eld.data('id',id);
+
+    //creates table
+    $eld.append('<table></table>');
+    $el = $eld.children().last();
 
     //appends object to the rows as a table
     $el.append('<td class="table-item">'+task+'</td>');
@@ -145,7 +152,7 @@ function displayData(dataArray){
 
     //appends button to the row and adds data tags
     $el.append('<td class="table-item"></td>');
-    var $el1 = $el.children().last();
+     $el1 = $el.children().last();
     if (completed === true){
       $el.addClass('highlight-div');
     }//ends if
@@ -187,7 +194,10 @@ function eventListeners(){
       console.log("inside delete button on click");
       confirm("Are you sure you want to delete this task?");
       var $this = $(this);
-      deleteTask($this);
+      var id = $this.data('id');
+      console.log("id in on click delete", id);
+      $parentDiv = $this.parent().parent();
+      $parentDiv.fadeOut('slow',function(){deleteTask($this);});
   });//ends on click delete
 }//ends eventListeners
 

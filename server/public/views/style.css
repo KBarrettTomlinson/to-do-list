@@ -5,21 +5,54 @@ html, body{
 
 }
 
-h1{
-  text-align: center;
-  font-size: 45px;
+body{
+  height: 100%;
+  width:100%;
 
 }
+
+h1{
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 45px;
+  margin: 0px;
+  top: 10px;
+  vertical-align:middle; /*middle centred*/
+  display:table-cell; /*acts like a table cell*/
+}
+table{
+  text-align: center;
+  margin: 10px auto;
+  background-color: darkseagreen;
+  border-radius: 5px;
+  height: 45px;
+}
+
+th{
+  margin: 0 auto;
+}
+
+tr{
+  margin: 0 auto;
+}
+
 
 /*classes and ids -
 arranged in order of appearance in DOM with highlight-div at bottom */
 #headerDiv{
-  background-image: url(images/linedPaper.jpg);
+  width: 100%;
+  text-align: center;
+  height: 100px;
+  display:table; /*acts like a table*/
+
 }
 
 
 #addTaskDiv{
   text-align: center;
+  width: 100%;
+  height:75px;
 }
 
 #addTaskForm{
@@ -27,8 +60,21 @@ arranged in order of appearance in DOM with highlight-div at bottom */
 
 }
 
+.input-item{
+  width: 20%;
+  height: 30px;
+  border-radius: 5px;
+  border-style: solid;
+  text-align: center;
+  padding: 10px;
+}
+
+#sumbitTask{
+}
+
 #taskHeaderDiv{
   text-align: center;
+
 }
 
 
@@ -37,7 +83,6 @@ arranged in order of appearance in DOM with highlight-div at bottom */
 }
 
 #priority{
-
 }
 
 #next{
@@ -55,6 +100,8 @@ border-top: thick double black;
 #dataRowDiv{
   text-align: center;
   margin: 0 auto;
+  width: 100%;
+
 
 }
 
@@ -62,6 +109,8 @@ border-top: thick double black;
   width: 150px;
   text-align: center;
   margin: 0 auto;
+  font-size: 14px;
+  padding: 10px;
 
 }
 
