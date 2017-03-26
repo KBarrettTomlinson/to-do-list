@@ -30,6 +30,10 @@ table{
   height: 45px;
 }
 
+table:hover{
+  opacity: .85;
+}
+
 th{
   margin: 0 auto;
 }
@@ -122,9 +126,9 @@ z-index: 3;
   width: 100%;
 }
 
-.data-row-div:hover{
+/*.data-row-div:hover{
   opacity: .85;
-}
+}*/
 
 .table-item{
   width: 150px;
