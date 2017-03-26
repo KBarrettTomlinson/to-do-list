@@ -111,9 +111,7 @@ function displayData(dataArray){
   $el1.append('<th class="table-item">COMPLETED</th>');
   $el1.append('<th class="table-item">DELETE TASK</th>');
 
-
-
-
+  //iterates through dataArray
   for (var i = 0; i < dataArray.length; i++){
     $('#outputDiv').append('<div class = "dataRowDiv"></div>');
 
@@ -137,7 +135,7 @@ function displayData(dataArray){
     }//end else
 
     //appends dataRowDiv to the outputDiv
-    $('#outputDiv').append('<div class = "dataRowDiv"></div>');
+    $('#outputDiv').append('<div class = "data-row-div"></div>');
     $eld = $('#outputDiv').children().last();
     $eld.data('id',id);
 
@@ -152,10 +150,22 @@ function displayData(dataArray){
 
     //appends button to the row and adds data tags
     $el.append('<td class="table-item"></td>');
-     $el1 = $el.children().last();
+    switch (priority){
+      case 5:
+      case 4:
+        $el.addClass('priority-high-div');
+        break;
+      case 3:
+      case 2:
+        $el.addClass('priority-med-div');
+        break;
+      case 1:
+        $el.addClass('priority-low-div');
+    }//ends switch
     if (completed === true){
       $el.addClass('highlight-div');
     }//ends if
+    $el1 = $el.children().last();
     $el1.append('<button class="complete-button">'+completeButtonText+'</button>');
     var $el2 = $el1.children().last();
     $el2.data('id',id);
@@ -186,7 +196,9 @@ function eventListeners(){
   $('#outputDiv').on('click','.complete-button',function(){
       console.log("inside complete button on click");
       var $this = $(this);
-      completeTask($this);
+      var id = $this.data('id');
+      $parentDiv = $this.parent().parent();
+      $parentDiv.fadeOut('medium',function(){completeTask($this);});
   });//ends on click complete
 
   //on click delete
@@ -197,7 +209,7 @@ function eventListeners(){
       var id = $this.data('id');
       console.log("id in on click delete", id);
       $parentDiv = $this.parent().parent();
-      $parentDiv.fadeOut('slow',function(){deleteTask($this);});
+      $parentDiv.fadeOut('medium',function(){deleteTask($this);});
   });//ends on click delete
 }//ends eventListeners
 
