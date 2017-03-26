@@ -108,7 +108,7 @@ function displayData(dataArray){
   $el1.append('<th class="table-item">TASK</th>');
   $el1.append('<th class="table-item">PRIORITY</th>');
   $el1.append('<th class="table-item">NEXT STEP</th>');
-  $el1.append('<th class="table-item">COMPLETED</th>');
+  $el1.append('<th class="table-item">COMPLETE TASK</th>');
   $el1.append('<th class="table-item">DELETE TASK</th>');
 
   //iterates through dataArray
@@ -128,10 +128,10 @@ function displayData(dataArray){
     //completed button text
     var completeButtonText;
     if (completed === true){
-      completeButtonText = "Complete";
+      completeButtonText = "Restore";
     }//end if
     else{
-      completeButtonText = "TO DO";
+      completeButtonText = "Complete";
     }//end else
 
     //appends dataRowDiv to the outputDiv

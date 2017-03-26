@@ -20,6 +20,7 @@ h1{
   top: 10px;
   vertical-align:middle; /*middle centred*/
   display:table-cell; /*acts like a table cell*/
+  color: dimgray;
 }
 table{
   text-align: center;
@@ -40,6 +41,9 @@ tr{
 
 /*classes and ids -
 arranged in order of appearance in DOM with highlight-div at bottom */
+#wrapperDiv{
+}
+
 #holderDiv{
   width: 100%;
   left 0;
@@ -55,7 +59,6 @@ arranged in order of appearance in DOM with highlight-div at bottom */
   height: 100px;
   display:table; /*acts like a table*/
   background-color: floralwhite;
-  /*position:fixed;*/
 
 }
 
@@ -65,7 +68,7 @@ arranged in order of appearance in DOM with highlight-div at bottom */
   width: 100%;
   height:75px;
   background-color: floralwhite;
-  border-bottom: thick double black;
+  border-bottom: thick double dimgray;
 }
 
 #addTaskForm{
@@ -77,9 +80,10 @@ arranged in order of appearance in DOM with highlight-div at bottom */
   width: 20%;
   height: 30px;
   border-radius: 5px;
-  border-style: solid;
+  border: 1px solid dimgray;
   text-align: center;
   padding: 10px;
+  color: dimgray;
 }
 
 #sumbitTask{
@@ -105,9 +109,9 @@ arranged in order of appearance in DOM with highlight-div at bottom */
 
 #outputDiv{
 text-align: center;
-border-top: thick double black;
 background-color: ivory;
 margin: 5px;
+padding-top: 175px;
 z-index: 3;
 
 }
@@ -129,9 +133,9 @@ z-index: 3;
   font-size: 16px;
   padding: 10px;
   font-family: sans-serif;
+  color: darkslategray;
 
 }
-
 
 .complete-button{
 
@@ -161,4 +165,9 @@ z-index: 3;
 
 .highlight-div{
   background-color: lightgrey;
+  opacity: .65;
+}
+
+.highlight-div:hover{
+  opacity: 1;
 }
