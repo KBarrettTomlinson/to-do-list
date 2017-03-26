@@ -24,7 +24,7 @@ function addTask(object){
   console.log("inside addTask");
   $.ajax({
     type: 'POST',
-    url: '/todolist/add',
+    url : '/todolist/add',
     data: object,
     success: function(response){
       console.log("We've taken something to the other side:",response);
@@ -103,14 +103,15 @@ function displayData(dataArray){
   //creates header
   $('#outputDiv').append('<div class = "dataRowDiv"></div>');
   var $el = $('#outputDiv').children().last();
-  $el.append('<th class="table-item">TASK</th>');
-  $el.append('<th class="table-item">PRIORITY</th>');
-  $el.append('<th class="table-item">NEXT STEP</th>');
-  $el.append('<th class="table-item">COMPLETED</th>');
-  $el.append('<th class="table-item">DELETE TASK</th>');
+  $el.append('<table></table>');
+  var $el1 = $el.children().last();
+  $el1.append('<th class="table-item">TASK</th>');
+  $el1.append('<th class="table-item">PRIORITY</th>');
+  $el1.append('<th class="table-item">NEXT STEP</th>');
+  $el1.append('<th class="table-item">COMPLETE TASK</th>');
+  $el1.append('<th class="table-item">DELETE TASK</th>');
 
-
-
+  //iterates through dataArray
   for (var i = 0; i < dataArray.length; i++){
     $('#outputDiv').append('<div class = "dataRowDiv"></div>');
 
@@ -126,17 +127,21 @@ function displayData(dataArray){
 
     //completed button text
     var completeButtonText;
-    if (completed ===true){
-      completeButtonText = "Complete";
+    if (completed === true){
+      completeButtonText = "Restore";
     }//end if
     else{
-      completeButtonText = "TO DO";
+      completeButtonText = "Complete";
     }//end else
 
     //appends dataRowDiv to the outputDiv
-    $('#outputDiv').append('<div class = "dataRowDiv"></div>');
-    $el = $('#outputDiv').children().last();
-    $el.data('id',id);
+    $('#outputDiv').append('<div class = "data-row-div"></div>');
+    $eld = $('#outputDiv').children().last();
+    $eld.data('id',id);
+
+    //creates table
+    $eld.append('<table></table>');
+    $el = $eld.children().last();
 
     //appends object to the rows as a table
     $el.append('<td class="table-item">'+task+'</td>');
@@ -145,10 +150,22 @@ function displayData(dataArray){
 
     //appends button to the row and adds data tags
     $el.append('<td class="table-item"></td>');
-    var $el1 = $el.children().last();
+    switch (priority){
+      case 5:
+      case 4:
+        $el.addClass('priority-high-div');
+        break;
+      case 3:
+      case 2:
+        $el.addClass('priority-med-div');
+        break;
+      case 1:
+        $el.addClass('priority-low-div');
+    }//ends switch
     if (completed === true){
       $el.addClass('highlight-div');
     }//ends if
+    $el1 = $el.children().last();
     $el1.append('<button class="complete-button">'+completeButtonText+'</button>');
     var $el2 = $el1.children().last();
     $el2.data('id',id);
@@ -179,7 +196,9 @@ function eventListeners(){
   $('#outputDiv').on('click','.complete-button',function(){
       console.log("inside complete button on click");
       var $this = $(this);
-      completeTask($this);
+      var id = $this.data('id');
+      $parentDiv = $this.parent().parent();
+      $parentDiv.fadeOut('medium',function(){completeTask($this);});
   });//ends on click complete
 
   //on click delete
@@ -187,7 +206,10 @@ function eventListeners(){
       console.log("inside delete button on click");
       confirm("Are you sure you want to delete this task?");
       var $this = $(this);
-      deleteTask($this);
+      var id = $this.data('id');
+      console.log("id in on click delete", id);
+      $parentDiv = $this.parent().parent();
+      $parentDiv.fadeOut('medium',function(){deleteTask($this);});
   });//ends on click delete
 }//ends eventListeners
 
