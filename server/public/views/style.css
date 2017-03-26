@@ -1,0 +1,173 @@
+/*elements*/
+html, body{
+  margin: 0;
+  padding:  0;
+
+}
+
+body{
+  height: 100%;
+  width:100%;
+
+}
+
+h1{
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 45px;
+  margin: 0px;
+  top: 10px;
+  vertical-align:middle; /*middle centred*/
+  display:table-cell; /*acts like a table cell*/
+  color: dimgray;
+}
+table{
+  text-align: center;
+  margin: 10px auto;
+  background-color: cornflowerblue;
+  border-radius: 5px;
+  height: 45px;
+}
+
+th{
+  margin: 0 auto;
+}
+
+tr{
+  margin: 0 auto;
+}
+
+
+/*classes and ids -
+arranged in order of appearance in DOM with highlight-div at bottom */
+#wrapperDiv{
+}
+
+#holderDiv{
+  width: 100%;
+  left 0;
+  position: fixed;
+  top: 0;
+  z-index: 5;
+}
+
+
+#headerDiv{
+  width: 100%;
+  text-align: center;
+  height: 100px;
+  display:table; /*acts like a table*/
+  background-color: floralwhite;
+
+}
+
+
+#addTaskDiv{
+  text-align: center;
+  width: 100%;
+  height:75px;
+  background-color: floralwhite;
+  border-bottom: thick double dimgray;
+}
+
+#addTaskForm{
+
+
+}
+
+.input-item{
+  width: 20%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid dimgray;
+  text-align: center;
+  padding: 10px;
+  color: dimgray;
+}
+
+#sumbitTask{
+}
+
+#taskHeaderDiv{
+  text-align: center;
+
+}
+
+
+#task{
+
+}
+
+#priority{
+}
+
+#next{
+
+
+}
+
+#outputDiv{
+text-align: center;
+background-color: ivory;
+margin: 5px;
+padding-top: 175px;
+z-index: 3;
+
+}
+
+.data-row.div{
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.data-row-div:hover{
+  opacity: .85;
+}
+
+.table-item{
+  width: 150px;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 16px;
+  padding: 10px;
+  font-family: sans-serif;
+  color: darkslategray;
+
+}
+
+.complete-button{
+
+
+}
+
+.delete-button{
+
+
+}
+
+.priority-high-div{
+  background-color: tomato;
+
+}
+
+.priority-med-div{
+  background-color: palegoldenrod;
+
+}
+
+.priority-low-div{
+  background-color: palegreen;
+
+}
+
+
+.highlight-div{
+  background-color: lightgrey;
+  opacity: .65;
+}
+
+.highlight-div:hover{
+  opacity: 1;
+}
